@@ -11,4 +11,8 @@ module.exports = db.define('player', {
     type: Sequelize.TEXT,
     defaultValue: '/img/char/mouse.png',
   },
+  isComputer: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
 });

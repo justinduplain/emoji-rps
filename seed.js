@@ -3,6 +3,24 @@ const { db, Player, Game } = require('./server/db');
 const seed = async () => {
   try {
     await db.sync({ force: true });
+    const compPlayers = [
+      '8bit',
+      'alien',
+      'clown',
+      'goblin',
+      'ogre',
+      'poo',
+      'red robot',
+      'robot',
+      'skull',
+    ];
+    compPlayers.forEach(async (player) => {
+      await Player.create({
+        name: player.charAt(0).toUpperCase() + player.slice(1),
+        imageUrl: '/img/comp/' + player + '.png',
+        isComputer: true,
+      });
+    });
     const charlie = await Player.create({
       name: 'Charlie',
       imageUrl: '/img/char/mermaid.png',

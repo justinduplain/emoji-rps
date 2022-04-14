@@ -6,16 +6,19 @@ const app = express();
 const { db } = require('./db');
 const PORT = process.env.PORT || 8080;
 
-//const io = require('socket.io')(server);
-// handle sockets
-//require('./socket')(io);
-
 // db.sync() is handled at root: index.js
 db.sync().then(() => console.log('Database is synced'));
 
 const server = app.listen(PORT, () =>
   console.log(`Server listening on ${PORT}`)
 );
+
+const io = require('socket.io')(server);
+// handle sockets
+require('./socket')(io);
+io.on('connection', () => {
+  console.log('Socket.io listening.');
+});
 
 // logging middleware
 app.use(morgan('dev'));

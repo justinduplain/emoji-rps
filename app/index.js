@@ -10,7 +10,7 @@ import { createRoot } from 'react-dom/client';
 const container = document.getElementById('app');
 const root = createRoot(container);
 root.render(
-  // <Provider store={store}>
-  <Main />
-  // </Provider>
+  <Provider store={store}>
+    <Main />
+  </Provider>
 );
