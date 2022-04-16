@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { setPlayerOne, setPlayerTwo } from '../store/opponents';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Opponents = () => {
-  // const dispatch = useDispatch();
-  // // useEffect(() => {
-  // //   dispatch(fetchPlayers());
-  // // }, []);
-  const opponents = useSelector((state) => state.opponents);
-  let playerOne, playerTwo;
-  opponents ? ({ playerOne, playerTwo } = opponents) : null;
+  const dispatch = useDispatch();
+  let { playerOne, playerTwo } = useSelector((state) => state.opponents);
   return (
     <div className="row d-flex align-items-center justify-content-center">
       <div className="col-4">
@@ -33,7 +27,7 @@ const Opponents = () => {
               {playerOne ? (
                 playerOne.name
               ) : (
-                <span className="text-muted">?</span>
+                <span className="text-muted">waiting...</span>
               )}
             </h4>
           </div>
@@ -64,7 +58,7 @@ const Opponents = () => {
               {playerTwo ? (
                 playerTwo.name
               ) : (
-                <span className="text-muted">?</span>
+                <span className="text-muted">waiting</span>
               )}
             </h4>
           </div>

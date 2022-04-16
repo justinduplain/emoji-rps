@@ -1,17 +1,32 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import socket from '../socket';
 import { fetchPlayers } from '../store/players';
-
+import { setPlayerOne, setPlayerTwo } from '../store/opponents';
 import Opponents from './opponents';
 
 const PlayerSelect = () => {
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPlayers());
   }, []);
-  const players = useSelector((state) => state.players);
+
+  const dispatch = useDispatch();
+  const { players, opponents } = useSelector((state) => state);
+
+  const setOpponents = (id, name, imageUrl) => {
+    if (!opponents.playerOne || opponents.playerOne.socketId == socket.id) {
+      dispatch(setPlayerOne({ id, name, imageUrl, socketId: socket.id }));
+    } else if (
+      !opponents.playerTwo ||
+      opponents.playerTwo.socketId == socket.id
+    ) {
+      dispatch(setPlayerTwo({ id, name, imageUrl, socketId: socket.id }));
+    } else {
+      console.log('Session is full');
+    }
+  };
+
   return (
     <div>
       <Opponents />
@@ -30,9 +45,15 @@ const PlayerSelect = () => {
                 alt={player.imageUrl}
               />
               <div className="card-body">
-                <a href="#" className="btn btn-primary">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() =>
+                    setOpponents(player.id, player.name, player.imageUrl)
+                  }
+                >
                   {player.name}
-                </a>
+                </button>
               </div>
             </div>
           </div>
