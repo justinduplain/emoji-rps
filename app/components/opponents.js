@@ -33,9 +33,27 @@ const Opponents = () => {
           </div>
         </div>
       </div>
-      <div className="col-1 d-flex align-items-center justify-content-center">
+      <div className="col-3 d-flex align-items-center justify-content-center">
         <div>
           <h2 className="huge"> vs </h2>
+          <button
+            type="button"
+            className="btn btn-primary btn-startgame"
+            // onClick={() =>
+            //   setOpponents(player.id, player.name, player.imageUrl)
+            // }
+            disabled={
+              playerOne &&
+              playerOne.id &&
+              playerTwo &&
+              playerTwo.id &&
+              playerOne.id !== playerTwo.id
+                ? false
+                : true
+            }
+          >
+            <img src="/img/shoot.png" alt="shoot! (play)" />
+          </button>
         </div>
       </div>
       <div className="col-4">

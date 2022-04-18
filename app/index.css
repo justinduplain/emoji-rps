@@ -188,6 +188,10 @@ nav h1 img {
   text-transform: uppercase;
 }
 
+.btn-startgame img {
+  width: 40%;
+}
+
 .playsubmit {
   margin-top: 20px;
 }
