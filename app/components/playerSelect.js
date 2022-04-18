@@ -24,6 +24,7 @@ const PlayerSelect = () => {
       dispatch(setPlayerTwo({ id, name, imageUrl, socketId: socket.id }));
     } else {
       console.log('Session is full');
+      alert('Sorry, session is full.');
     }
   };
 

@@ -16,9 +16,6 @@ const server = app.listen(PORT, () =>
 const io = require('socket.io')(server);
 // handle sockets
 require('./socket')(io);
-io.on('connection', () => {
-  console.log('Socket.io listening.');
-});
 
 // logging middleware
 app.use(morgan('dev'));

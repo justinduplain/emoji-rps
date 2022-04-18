@@ -4,10 +4,12 @@ import appReducer from './store/';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
+import { socketMiddleware } from './socket';
 
 let middleware = [
   thunkMiddleware.withExtraArgument({ axios }),
   createLogger({ collapsed: true }),
+  socketMiddleware,
 ];
 
 //Base case reducer
